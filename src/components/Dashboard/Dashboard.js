@@ -1,11 +1,11 @@
 
 import Posts from '../../components/Dashboard/Posts'
 import PostDetail from '../../components/PostDetail/PostDetail';
-import NewPost from '../Post/NewPost'
+import NewPostRef from '../Post/NewPostRef'
 import {useState,useEffect} from 'react'
+import { SelectedIdContext } from '../context/SelectedIdContext';
 import axios from 'axios';
 const Dashboard=()=>{
-   // const [prodId, setProdId] = useState(114);
     const [posts,setPosts]=useState([
         {id:111, title:"Happiness",author:"John"},
         {id:112, title:"MIU",author:"Dean"},
@@ -25,16 +25,9 @@ const Dashboard=()=>{
     }
     
     const addButtonClicked = () => {
-        // const copy = { ...post };
-        // copy.id = prodId;
-        // setProdId(prodId+1);
-        // const copyPosts = [...posts]
-        // copyPosts.push(copy);
-        // setPosts(copyPosts);
         axios.post('http://localhost:8080/posts/', post,{withCredentials:false})
             .then(response => {
-                // setPost(response);
-                fetchPosts();
+               fetchPosts();
             })
 
     }
@@ -69,12 +62,14 @@ const Dashboard=()=>{
             })
     }
     return(
+    <SelectedIdContext.Provider value={selectedState}>
         <div>
             <div className='Post'>
                 <Posts posts={posts} setSelected={setSelected}/>
             </div>
-            <PostDetail id={selectedState} deletePost={deletePost}/>
-            <div>
+            <PostDetail  deletePost={deletePost}/>
+            <NewPostRef />
+            {/* <div>
                 <NewPost
                 title={post.title}
                 author={post.author}
@@ -82,8 +77,9 @@ const Dashboard=()=>{
                 onChange={(event) => { onChange(event) }}
                 addButtonClicked={addButtonClicked}
                 />
-            </div>
+            </div> */}
         </div>
+        </SelectedIdContext.Provider>
     )
 }
 export default Dashboard

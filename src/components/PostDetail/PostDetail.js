@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useContext,useEffect, useState } from 'react';
-import { SelectedIdContext } from '../../context/SelectedIdContext';
+import { SelectedIdContext } from '../context/SelectedIdContext';
 import Comment from '../../components/Comment/Comment';
 import './PostDetail.css';
 
