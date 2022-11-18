@@ -1,0 +1,10 @@
+.post_Detail {
+    background-color: rgb(250, 246, 240);
+    width: 500px;
+    margin: auto;
+    padding: 10px;
+    border: 2px solid #163edf;
+}
+.post-action a {
+    margin-right: 10px;
+}
